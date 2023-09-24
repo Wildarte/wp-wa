@@ -1,78 +1,68 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Wildarte</title>
-</head>
-<body>
-
-    <header class="header">
-        <div class=" content_header">
-            <div class="logo_site">
-                <a href="">
-                    WildArte
-                </a>
-            </div>
-            
-            <div class="over_form">
-                <form action="" method="">
-                    <input type="search" name="s" id="" value="" placeholder="O que você busca?">
-                    <button><i class="bi bi-search"></i></button>
-                </form>
-            </div>
-
-            <nav class="menu menu_header">
-                <ul>
-                    <li><a href="">Sobre</a></li>
-                    <li><a href="">Contato</a></li>
-                </ul>
-            </nav>
-
-            
-        </div>
-        <div class="bottom_header">
-            <div class="container">
-
-                <nav class="menu_second">
-                    <ul>
-                        <li><a href="">PHP</a></li>
-                        <li><a href="">Javascript</a></li>
-                        <li><a href="">DevOps</a></li>
-                        <li><a href="">Linux</a></li>
-                        <li><a href="">Programação</a></li>
-                        <li><a href="">CSS</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+<?php get_header();
+//Template Name: Home
+?>
     
     <main>
         <section class="section_hero">
+
+            <?php 
+                
+                $post_destaque = get_field('post_destaque');
+                $post_destaque2 = get_field('post_destaque_2');
+
+                if(!empty($post_destaque) && !empty($post_destaque2)):
+
+                    $args = [
+                        'post_type' => 'post',
+                        'post__in' => [$post_destaque->ID, $post_destaque2->ID]
+                    ];
+
+                    $results = new WP_Query($args);
+
+                    if($results->have_posts()):
+                        
+            
+            ?>
             <section class="container d-flex container_hero">
+
+                <?php
+                    while($results->have_posts()):
+                        $results->the_post();
+                ?>
+    
                 <article class="card_post_destaque">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2020/01/26/20/14/computer-4795762_1280.jpg" alt="">
+                    <a href="<?= get_the_permalink(); ?>">
+                        <img src="<?= get_the_post_thumbnail_url(null, 'medium') ?>" alt="">
                     </a>
 
-                    <h2><a href="#">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</a></h2>
+                    <h2><a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h2>
 
 
                     <div class="list_cat_post">
-                        <ul>
-                            <li><a href="">PHP</a></li>
-                            <li><a href="">Javascript</a></li>
-                            <li><a href="">XAMPP</a></li>
-                            <li><a href="">Linux</a></li>
+                        <?php
+
+                            $categories = get_the_tags();
+
+                            ?>
+                            <ul class="list_cat_post">
+                            <?php
+
+                            if ($categories) {
+                                echo '<ul class="lista-de-categorias">';
+                                foreach ($categories as $category) {
+                                    echo '<li><a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a></li>';
+                                }
+                                echo '</ul>';
+                            }
+                            ?>
                         </ul>
                     </div>
 
                 </article>
 
+                <?php endwhile;  ?>
+
+                <!-- 
                 <article class="card_post_destaque">
                     <a href="">
                         <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
@@ -90,9 +80,12 @@
                     </div>
                    
                 </article>
+                 -->
 
                 
             </section>
+
+            <?php endif; endif; wp_reset_postdata(); ?>
         </section>
 
         <section class="container p-10">
@@ -101,114 +94,45 @@
 
         <section class="">
             <section class="container list_post_simple d-flex">
-                <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
-                    </a>
 
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
+                <?php
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
-                </article>
+                    $args = [
+                        'post_type' => 'post',
+                        'posts_per_page' => 9
+                    ];
 
-                <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
-                    </a>
+                    $results = new WP_Query($args);
 
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
+                    if($results->have_posts()):
+                        while($results->have_posts()):
+                            $results->the_post();
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
-                </article>
+                ?>
 
                 <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
+                    <a href="<?= get_the_permalink(); ?>">
+                        <?php $post_thumbnail_id = get_post_thumbnail_id(get_the_ID()); ?>
+
+                        <img src="<?= get_the_post_thumbnail_url(null, 'medium') ?>" alt="<?= get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true); ?>" title="<?= get_the_title($post_thumbnail_id); ?>">
+                        
                     </a>
 
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
+                    <h3><a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h3>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
+                    <p><?= get_the_excerpt(); ?></p>
                 </article>
 
-                <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
-                    </a>
+                <?php endwhile; endif; wp_reset_postdata(); ?>
 
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
-                </article>
-
-                <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
-                    </a>
-
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
-                </article>
-
-                <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
-                    </a>
-
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
-                </article>
-
-                <article class="card_post_simple">
-                    <a href="">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_1280.jpg" alt="">
-                    </a>
-
-                    <h3><a href="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora rerum</a></h3>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem earum vel, numquam repellat quia placeat mollitia libero id quam culpa</p>
-                </article>
+                
             </section>
+
+            <div class="container more_post d-flex">
+                <a href="">Ver todos</a>
+            </div>
+
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container content_footer d-flex">
-            <div class="col_footer">
-                <a href="">
-                    WindArte
-                </a>
-            </div>
-            <div class="col_footer">
-                <h4>Menu</h4>
-
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Contato</a></li>
-                </ul>
-            </div>
-            <div class="col_footer">
-                <h4>Categorias</h4>
-
-                <ul>
-                    <li><a href="">Javascript</a></li>
-                    <li><a href="">PHP</a></li>
-                    <li><a href="">CSS</a></li>
-                    <li><a href="">DevOps</a></li>
-                </ul>
-            </div>
-            <div class="col_footer">
-                <ul>
-                    <li><a href="">Políticas de Privacidade</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bottom_footer">
-            <p>© Todos os direitos reservados - por <a href="#">wildarte.com.br</a></p>
-        </div>
-    </footer>
-
-</body>
-</html>
+    <?php get_footer();?>

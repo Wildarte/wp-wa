@@ -164,7 +164,7 @@ nav.menu ul li a{
 }
 
 .list_post_simple{
-    padding: 60px 10px;
+    padding: 60px 10px 10px;
     justify-content: space-between;
 }
 
@@ -230,6 +230,31 @@ footer.footer{
 }
 .col_footer a{
     color: var(--color-white);
+}
+.more_post{
+    padding: 40px 10px 80px;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.more_post a{
+    background-color: var(--color-dark-main);
+    padding: 10px 40px;
+    color: var(--color-white);
+}
+.head_default h1{
+    position: relative;
+}
+.more_post .nav-links{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.more_post .nav-links a{
+    margin: 0 4px;
+    padding: 4px 10px;
 }
 
 
