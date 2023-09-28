@@ -105,9 +105,11 @@ header.header{
     border: none;
     cursor: pointer;
 }
-.bottom_header
+
 .menu_header{
     width: 15%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 
@@ -165,11 +167,11 @@ nav.menu ul li a{
 
 .list_post_simple{
     padding: 60px 10px 10px;
-    justify-content: space-between;
 }
 
 .card_post_simple{
     flex-basis: calc(33% - 20px);
+    margin: 10px;
     margin-bottom: 20px;
 }
 .card_post_simple img{
@@ -239,8 +241,13 @@ footer.footer{
     align-items: center;
 }
 .more_post a{
-    background-color: var(--color-dark-main);
+    background-color: var(--color-second);
     padding: 10px 40px;
+    color: var(--color-white);
+}
+.more_post span{
+    background-color: var(--color-dark-main);
+    padding: 4px 10px;
     color: var(--color-white);
 }
 .head_default h1{
@@ -256,6 +263,7 @@ footer.footer{
     margin: 0 4px;
     padding: 4px 10px;
 }
+
 
 
 /* ======================================= post style ================================= */
@@ -445,5 +453,36 @@ footer.footer{
     color: var(--color-dark2);
     font-weight: 600;
     margin-top: 15px;
+}
+
+.left_sidebar{
+    padding: 10px;
+}
+.info_header_post{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.info_header_post span{
+    padding: 2px 6px;
+    background-color: var(--color-second);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+}
+.info_header_post ul{
+    display: flex;
+}
+.info_header_post ul li a{
+    padding: 2px 6px;
+    background-color: var(--color-main);
+    color: var(--color-white);
+    margin: 0 2px;
+}
+.info_header_post .user_post{
+    background-color: var(--color-dark2);
+}
+.info_header_post .date_post{
+    background-color: var(--color-second);
 }
 /* ======================================= post style ================================= */

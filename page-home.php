@@ -129,7 +129,7 @@
             </section>
 
             <div class="container more_post d-flex">
-                <a href="">Ver todos</a>
+                <a href="<?= home_url() ?>/blog">Ver todos</a>
             </div>
 
         </section>

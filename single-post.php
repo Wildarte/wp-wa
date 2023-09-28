@@ -1,60 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Wildarte</title>
-</head>
-<body>
+<?php get_header(); ?>
 
-    <header class="header">
-        <div class=" content_header">
-            <div class="logo_site">
-                <a href="">
-                    WildArte
-                </a>
-            </div>
-            
-            <div class="over_form">
-                <form action="" method="">
-                    <input type="search" name="s" id="" value="" placeholder="O que você busca?">
-                    <button><i class="bi bi-search"></i></button>
-                </form>
-            </div>
-
-            <nav class="menu menu_header">
-                <ul>
-                    <li><a href="">Sobre</a></li>
-                    <li><a href="">Contato</a></li>
-                </ul>
-            </nav>
-
-            
-        </div>
-        <div class="bottom_header">
-            <div class="container">
-
-                <nav class="menu_second">
-                    <ul>
-                        <li><a href="">PHP</a></li>
-                        <li><a href="">Javascript</a></li>
-                        <li><a href="">DevOps</a></li>
-                        <li><a href="">Linux</a></li>
-                        <li><a href="">Programação</a></li>
-                        <li><a href="">CSS</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    
+<?php if(have_posts()): while(have_posts()): the_post();  ?>
     <main>
         <section class="header_post_page" style="background-image: url(https://cdn.pixabay.com/photo/2020/02/03/20/49/technology-4816658_1280.jpg);">
             <div class="container content_header_post_page">
-                <h1>Como testar seu site no iPhone e Safari sem possuir um iPhone: Dicas para desenvolvedores</h1>
+                <h1><?= get_the_title() ?></h1>
             </div>
         </section>
 
@@ -63,16 +13,32 @@
 
                 <div class="f-70 left_content">
                     <div class="header_post">
-                        <h2>PHPStorm: O que é essa IDE incrível?</h2>
+                        <h2><?= get_the_title() ?></h2>
 
                         <div class="info_header_post">
-                            <span>Admin</span>
+                            <?php
+                                $user = wp_get_current_user();
+                            ?>
+                            <span class="user_post"><i class="bi bi-person"></i>  &nbsp;<?= $user->user_nicename; ?></span>
 
-                            <ul>
-                                <li><a href="">Categoria</a></li>
-                            </ul>
+                            <?php
 
-                            <span>Março 16, 2023</span>
+                                $categories = get_the_category();
+
+                                // Verifica se há categorias
+                                if (!empty($categories)) {
+                                    echo '<ul>';
+                                    foreach ($categories as $category) {
+                                        echo '<li><a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a></li>';
+                                    }
+                                    echo '</ul>';
+                                } else {
+                                    echo 'Nenhuma categoria encontrada.';
+                                }
+
+                            ?>
+
+                            <span class="date_post"><i class="bi bi-calendar"></i> &nbsp;<?= get_the_date(`j F Y`) ?></span>
                         </div>
 
                         <img src="https://cdn.pixabay.com/photo/2020/02/03/20/49/technology-4816658_1280.jpg" alt="">
@@ -83,6 +49,8 @@
                     </div>
 
                     <div class="content_post">
+
+                        <?php the_content() ?>
 
                         <p>Com o aumento do uso de dispositivos móveis para acessar a internet, é crucial que os desenvolvedores testem seus sites em diferentes plataformas, navegadores e dispositivos para prever possíveis incompatibilidades e para garantir que eles funcionem corretamente para todos os usuários. Se você deseja testar seu site no iPhone e no Safari, mas não possui um iPhone, existem diversas opções disponíveis.</p>
 
@@ -135,8 +103,14 @@
                     </div>
                 </div>
 
-                <div class="f-30">
+                <div class="f-30 left_sidebar">
+                    <?php 
+                        
+                        if(is_active_sidebar('barra-lateral')):
+                            dynamic_sidebar('barra-lateral');
+                        endif;
 
+                    ?>
                 </div>
                 
             </div>
@@ -144,6 +118,8 @@
         </section>
 
     </main>
+
+<?php endwhile; endif; ?>
 
     <script>
         
@@ -189,41 +165,4 @@
         });
     </script>
 
-    <footer class="footer">
-        <div class="container content_footer d-flex">
-            <div class="col_footer">
-                <a href="">
-                    WindArte
-                </a>
-            </div>
-            <div class="col_footer">
-                <h4>Menu</h4>
-
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Contato</a></li>
-                </ul>
-            </div>
-            <div class="col_footer">
-                <h4>Categorias</h4>
-
-                <ul>
-                    <li><a href="">Javascript</a></li>
-                    <li><a href="">PHP</a></li>
-                    <li><a href="">CSS</a></li>
-                    <li><a href="">DevOps</a></li>
-                </ul>
-            </div>
-            <div class="col_footer">
-                <ul>
-                    <li><a href="">Políticas de Privacidade</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bottom_footer">
-            <p>© Todos os direitos reservados - por <a href="#">wildarte.com.br</a></p>
-        </div>
-    </footer>
-
-</body>
-</html>
+<?php get_footer(); ?>

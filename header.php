@@ -25,7 +25,7 @@
             </div>
             
             <div class="over_form">
-                <form action="" method="">
+                <form action="<?= home_url() ?>/?s=" method="">
                     <input type="search" name="s" id="" value="" placeholder="O que você busca?">
                     <button><i class="bi bi-search"></i></button>
                 </form>
