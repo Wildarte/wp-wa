@@ -9,6 +9,7 @@
 
 <body <?php body_class(); ?>>
 
+<div class="over_body"></div>
     <header class="header">
         <div class=" content_header">
             <div class="logo_site">
@@ -46,9 +47,25 @@
             
         </div>
         <div class="bottom_header">
-            <div class="container">
+            <div class="container content_bottom_header">
 
                 <nav class="menu_second">
+                    <div class="head_menu_second">
+                        <?php
+                            $custom_logo_id = get_theme_mod('custom_logo');
+                            $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+
+                            if (has_custom_logo()) {
+                                echo '<a href="' . esc_url(home_url('/')) . '" rel="home"><img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '"></a>';
+                            } else {
+                                echo '<h1><a href="' . esc_url(home_url('/')) . '">' . get_bloginfo('name') . '</a></h1>';
+                            }
+                        ?>
+
+                        <div class="btn_close_menu">
+                            <i class="bi bi-x-lg"></i>
+                        </div>
+                    </div>
                     <?php
 
                         wp_nav_menu(array(
@@ -58,6 +75,9 @@
                         ));
                     ?>
                 </nav>
+                <div class="btn_menu">
+                    <i class="bi bi-list"></i>
+                </div>
             </div>
         </div>
     </header>

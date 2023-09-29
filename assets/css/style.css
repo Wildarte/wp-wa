@@ -263,6 +263,9 @@ footer.footer{
     margin: 0 4px;
     padding: 4px 10px;
 }
+.head_archive{
+    padding: 0 10px;
+}
 
 
 
@@ -486,3 +489,188 @@ footer.footer{
     background-color: var(--color-second);
 }
 /* ======================================= post style ================================= */
+
+.btn_menu, .head_menu_second{
+    display: none;
+}
+
+
+@media(max-width: 768px){
+    .content_header{
+        flex-wrap: wrap;
+        padding: 20px 10px;
+    }
+    .logo_site{
+        width: 100%;
+        text-align: center;
+    }
+    .over_form{
+        width: 100%;
+    }
+    .menu_header{
+        width: 100%;
+        display: none!important;
+    }
+    .card_post_simple{
+        flex-basis: calc(50% - 10px);
+        margin: 10px 0;
+    }
+    .list_post_simple{
+        justify-content: space-between;
+    }
+    .btn_menu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 8px;
+        border: 1px solid var(--color-white);
+        border-radius: 2px;
+        cursor: pointer;
+    }
+    .btn_close_menu{
+        cursor: pointer;
+    }
+    .btn_menu i{
+        color: var(--color-white);
+    }
+    .menu_second{
+        display: none;
+    }
+    .content_bottom_header{
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+    .menu_second{
+        position: fixed;
+        top: 0;
+        left: -110%;
+        z-index: 100;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        width: 300px;
+        height: 100%;
+        background-color: var(--color-white);
+        box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);
+        transition: all .23s;
+    }
+    .open_menu{
+        left: 0!important;
+    }
+    .menu_second ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .menu_second ul li{
+        width: 100%;
+        display: flex;
+    }
+    .menu_second ul li a{
+        color: var(--color-black);
+        padding: 5px 10px;
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .head_menu_second{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid var(--color-dark2);
+        background-color: var(--color-main);
+    }
+    .head_menu_second a{
+        color: var(--color-white);
+    }
+    .head_menu_second .btn_close_menu i{
+        color: var(--color-white);
+    }
+
+    .open_over_body{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 10, 10, .5);
+        z-index: 50;
+    }
+    .card_post_destaque{
+        position: relative;
+        flex-basis: 100%;
+        margin-bottom: 20px;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-end;
+        padding: 20px;
+    }
+    .card_post_destaque::before{
+        content: "";
+        width: 100%;
+        height: 50%;
+        background-image: linear-gradient(to top, rgba(10,10,10,.95), transparent);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+    .card_post_destaque .link_img img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%!important;
+        height: 100%!important;
+    }
+    .card_post_destaque h2 a{
+        position: relative;
+        color: var(--color-white);
+        z-index: 1;
+    }
+    .card_post_destaque .list_cat_post{
+        position: relative;
+        z-index: 1;
+    }
+    .container_hero{
+        padding: 60px 10px 20px;
+    }
+    .list_post_simple{
+        padding: 20px 10px 10px;
+    }
+}
+
+@media(max-width: 500px){
+    .header_post_page{
+        padding: 40px 10px;
+    }
+    .header_post_page h1{
+        font-size: 1.8em;
+    }
+    .card_post_simple{
+        flex-basis: 100%;
+    }
+    .over_form form input{
+        padding: 5px;
+        font-size: 1em;
+    }
+    .content_header{
+        padding: 10px;
+    }
+    .card_post_destaque{
+        height: 300px;
+    }
+    .card_post_destaque h2 a{
+        font-weight: 400;
+    }
+    .list_cat_post ul li a{
+        font-size: .875em;
+    }
+}
+
+@media(max-width: 420px){
+    .card_post_destaque{
+        height: 250px;
+    }
+}

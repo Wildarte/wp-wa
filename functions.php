@@ -10,7 +10,7 @@ function adicionar_estilos_e_scripts() {
     // Adicione scripts
     wp_enqueue_script('jquery'); // Use a versão do jQuery incluída no WordPress
 
-    wp_enqueue_script('script-personalizado', get_template_directory_uri() . '/js/seu-script.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/script.js', array(), '1.0.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'adicionar_estilos_e_scripts');

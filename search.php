@@ -2,7 +2,7 @@
     
     <main>
         
-        <section>
+        <section class="">
             <div class="container header_post_page head_default">
                 <h1 class="color-white">Pesquisa por: <span><?= get_search_query() ?></span></h1>
             </div>

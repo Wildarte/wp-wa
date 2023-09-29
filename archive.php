@@ -2,7 +2,7 @@
     
     <main>
         
-        <section>
+        <section class="head_archive">
             <div class="container header_post_page head_default">
                 <h1 class="color-white"><?= the_archive_title() ?></h1>
             </div>
@@ -13,7 +13,7 @@
         </section>
 
         <section class="">
-        <section class="container list_post_simple d-flex">
+            <section class="container list_post_simple d-flex">
 
             <?php
 

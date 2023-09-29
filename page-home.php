@@ -31,7 +31,7 @@
                 ?>
     
                 <article class="card_post_destaque">
-                    <a href="<?= get_the_permalink(); ?>">
+                    <a class="link_img" href="<?= get_the_permalink(); ?>">
                         <img src="<?= get_the_post_thumbnail_url(null, 'medium') ?>" alt="">
                     </a>
 
