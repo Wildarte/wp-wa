@@ -4,10 +4,10 @@
 <main>
     <section>
         <div class="container">
-            <header>
-                <?php the_title() ?>
+            <header class="content_post">
+                <h2><?= get_the_title() ?></h2>
             </header>
-            <div class="content_post">
+            <div class="content_post p-10">
                 <?php the_content(); ?>
             </div>
         </div>

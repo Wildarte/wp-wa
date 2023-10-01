@@ -71,7 +71,7 @@ function adicionar_suporte_a_logo() {
 
 // Adicione um tamanho de imagem personalizado
 add_image_size('head_post', 800, 380, true);
-add_image_size('head_post', 1920, 230, true);
+add_image_size('head_post_top', 1920, 230, true);
 
 
 add_action('after_setup_theme', 'adicionar_suporte_a_logo');

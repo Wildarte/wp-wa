@@ -32,7 +32,7 @@
     
                 <article class="card_post_destaque">
                     <a class="link_img" href="<?= get_the_permalink(); ?>">
-                        <img src="<?= get_the_post_thumbnail_url(null, 'medium') ?>" alt="">
+                        <img src="<?= get_the_post_thumbnail_url(null, 'large') ?>" alt="">
                     </a>
 
                     <h2><a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h2>
@@ -99,7 +99,8 @@
 
                     $args = [
                         'post_type' => 'post',
-                        'posts_per_page' => 9
+                        'posts_per_page' => 9,
+                        'post__not_in' => [$post_destaque->ID, $post_destaque2->ID]
                     ];
 
                     $results = new WP_Query($args);

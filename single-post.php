@@ -2,7 +2,7 @@
 
 <?php if(have_posts()): while(have_posts()): the_post();  ?>
     <main>
-        <section class="header_post_page" style="background-image: url(https://cdn.pixabay.com/photo/2020/02/03/20/49/technology-4816658_1280.jpg);">
+        <section class="header_post_page" style="background-image: url(<?= get_the_post_thumbnail_url(null, 'head_post_top') ?>);">
             <div class="container content_header_post_page">
                 <h1><?= get_the_title() ?></h1>
             </div>
