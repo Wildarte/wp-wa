@@ -33,6 +33,9 @@ img{
     background-color: rgba(10, 10, 10, .2);
     margin: 10px auto;
 }
+.m-20-0{
+    margin: 40px 0;
+}
 .p-10{
     padding: 10px;
 }
@@ -305,7 +308,9 @@ footer.footer{
 .body_page_post{
     padding: 80px 0;
 }
-
+.header_post img{
+    width: 100%;
+}
 .left_content{
     padding: 10px;
 }
@@ -324,7 +329,7 @@ footer.footer{
     margin-right: 20px;
 }
 
-.content_post p, .content_post ul{
+.content_post p, .content_post ul, .content_post ol{
     font-size: 19px;
     font-family: var(--font-open-sans);
     font-weight: 400;
@@ -403,6 +408,13 @@ footer.footer{
 }
 .content_post table thead{
 }
+.content_post table {
+    width: 100%;
+    overflow-x: auto;
+}
+.content_post th,
+.content_post td {
+}
 .content_post table thead th{
     background-color: #f8f8f8;
     border-bottom: 1px solid var(--color-dark);
@@ -417,6 +429,9 @@ footer.footer{
     list-style: disc;
     margin-left: 20px;
     padding: 10px 0;
+}
+.content_post ol{
+    margin-left: 20px;
 }
 .content_post ul li{
     line-height: 1.4em;
@@ -457,9 +472,64 @@ footer.footer{
     font-weight: 600;
     margin-top: 15px;
 }
+.content_post .wp-block-table{
+    max-width: 100%;
+    overflow-x: auto;
+}
 
-.left_sidebar{
+.right_sidebar{
     padding: 10px;
+}
+.content_right_sidebar{
+    position: sticky;
+    top: 10px;
+}
+.right_sidebar .widget{
+    margin-bottom: 40px;
+}
+.right_sidebar form button[type=submit]{
+    margin: 0;
+    background-color: var(--color-dark-main);
+    color: var(--color-white);
+    border: none;
+    padding: 5px 10px;
+}
+.right_sidebar label{
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.right_sidebar .widget ul li a{
+    padding: 10px 0;
+    display: flex;
+    color: var(--color-dark-main2);
+}
+.right_sidebar .widget ul li a:hover{
+    color: var(--color-second);
+}
+.right_sidebar .widget ul li{
+    border-bottom: 1px solid rgba(10, 10, 10, .2);
+}
+.right_sidebar .widget ul li:last-of-type{
+    border-bottom: none;
+}
+.right_sidebar .wp-block-tag-cloud{
+    display: flex;
+    flex-wrap: wrap;
+}
+.right_sidebar .wp-block-tag-cloud a{
+    padding: 2px 8px;
+    background-color: var(--color-main);
+    color: var(--color-white);
+    margin: 1px;
+}
+.right_sidebar .wp-block-tag-cloud a:hover{
+    background-color: var(--color-second);
+}
+.right_sidebar h2{
+    font-size: 1.3em;
+    line-height: 1em;
+    margin-bottom: 10px;
 }
 .info_header_post{
     display: flex;
@@ -492,6 +562,60 @@ footer.footer{
 
 .btn_menu, .head_menu_second{
     display: none;
+}
+.over_form_contact{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.over_form_contact form{
+    width: 500px;
+    margin: auto;
+    position: relative;
+}
+.over_form_contact form input, .over_form_contact form textarea{
+    width: 100%;
+    padding: 10px;
+    background-color: #fefefe;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    border: 1px solid var(--color-dark-main);
+    margin: 5px 0;
+}
+.over_form_contact form button{
+    width: 40px;
+    height: 100%;
+    background-color: var(--color-white);
+    border: none;
+    cursor: pointer;
+}
+.over_form_contact form input[type=submit]{
+    width: auto;
+    height: 100%;
+    background-color: var(--color-dark-main);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    padding: 10px 50px;
+}
+.content_form{
+    padding: 20px 10px 40px!important;
+}
+.list_post_simple_single{
+    justify-content: space-between;
+}
+.list_post_simple_single .card_post_simple{
+    flex-basis: calc(50% - 10px);
+    margin: 0;
+}
+.list_post_simple_single h3{
+    width: 100%;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 40px;
 }
 
 
@@ -639,6 +763,9 @@ footer.footer{
     .list_post_simple{
         padding: 20px 10px 10px;
     }
+    .f-70, .f-30{
+        flex-basis: 100%;
+    }
 }
 
 @media(max-width: 500px){
@@ -666,6 +793,47 @@ footer.footer{
     }
     .list_cat_post ul li a{
         font-size: .875em;
+    }
+    .list_post_simple_single .card_post_simple{
+        flex-basis: calc(100% - 10px);
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    .list_post_simple_single .card_post_simple{
+        flex-basis: 100%;
+    }
+    .info_header_post{
+        flex-wrap: wrap;
+    }
+    .content_post{
+        overflow: hidden;
+    }
+    .content_post table{
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .header_post h2{
+        font-size: 2rem;
+        line-height: 1em;
+        margin-bottom: 40px;
+    }
+    .left_content{
+        width: 100%;
+    }
+    .body_page_post{
+        padding: 40px 0;
+    }
+    .info_header_post .user_post, .info_header_post .date_post{
+        margin: 2px;
+    }
+    .content_post p, .content_post ul{
+        font-size: 1.05em;
+        line-height: 1.2em;
+    }
+    .right_sidebar h2{
+        font-size: 1.3em;
+        line-height: 1em;
+        margin-bottom: 10px;
     }
 }
 

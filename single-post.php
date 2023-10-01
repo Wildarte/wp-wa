@@ -11,7 +11,7 @@
         <section class="body_page_post">
             <div class="container d-flex header_post">
 
-                <div class="f-70 left_content">
+                <div class="f-70 left_content d-flex">
                     <div class="header_post">
                         <h2><?= get_the_title() ?></h2>
 
@@ -41,7 +41,7 @@
                             <span class="date_post"><i class="bi bi-calendar"></i> &nbsp;<?= get_the_date(`j F Y`) ?></span>
                         </div>
 
-                        <img src="https://cdn.pixabay.com/photo/2020/02/03/20/49/technology-4816658_1280.jpg" alt="">
+                        <img src="<?= get_the_post_thumbnail_url(null, 'head_post') ?>" alt="">
                     </div>
 
                     <div class="share_post">
@@ -100,10 +100,87 @@
 
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="">Commodi amet, inventore eaque</a> in adipisci consectetur, quidem qui maxime nisi pariatur blanditiis, molestias sit aut. Facilis obcaecati neque in nostrum dolorum.</p>
 
+                        <table><thead><tr><th>Requiremento</th><th>Mínimo</th><th>Recomendado</th></tr></thead><tbody><tr><td>RAM</td><td>2 GB</td><td>8 GB RAM</td></tr><tr><td>CPU</td><td>Qualquer CPU moderno</td><td>CPU multi-core. PhpStorm suporta multithreading para diferentes operações e processos, tornando-o mais rápido quanto mais núcleos de CPU puder usar.</td></tr><tr><td>Espaço de disco</td><td>3.5 GB</td><td>SSD com pelo menos 5 GB de espaço livre</td></tr><tr><td>Resolução monitor</td><td>1024×768</td><td>1920×1080</td></tr><tr><td>Sistema operacional</td><td>Versões de 64 bits lançadas oficialmente do seguinte:Microsoft Windows 10 1809 ou posteriorWindows Server 2019 ou posteriormacOS 10.15 ou posteriorQualquer distribuição Linux compatível com Gnome, KDE ou Unity DE.PhpStorm não está disponível para distribuições Linux que não incluem&nbsp;GLIBC&nbsp;2.27 ou mais tarde.Versões de pré-lançamento não são suportadas.</td><td>Versão mais recente de 64 bits do Windows, macOS ou Linux (por exemplo, Debian, Ubuntu ou RHEL)</td></tr></tbody></table>
+
                     </div>
+                    <div class="hr-gray m-20-0"></div>
+                    <section class="">
+                        <section class="container list_post_simple_single d-flex">
+
+                        <?php
+                            // Obtém as categorias do post atual
+                            $categories = get_the_category();
+
+                            if (!empty($categories)) {
+                                $category_ids = array(); // Array para armazenar os IDs das categorias
+
+                                // Obtém os IDs das categorias
+                                foreach ($categories as $category) {
+                                    $category_ids[] = $category->term_id;
+                                }
+
+                                // Configura os argumentos da consulta para listar posts na(s) categoria(s) do post atual
+                                $args = array(
+                                    'post_type' => 'post', // Tipo de post que você deseja listar
+                                    'posts_per_page' => 5, // Número de posts para listar (ajuste conforme necessário)
+                                    'category__in' => $category_ids, // IDs das categorias
+                                    'post__not_in' => array(get_the_ID()), // Exclui o post atual da lista
+                                    'posts_per_page' => 2
+                                );
+
+                                // Realiza a consulta
+                                $related_posts_query = new WP_Query($args);
+
+                                // Loop para exibir os posts relacionados
+                                if ($related_posts_query->have_posts()) {
+                                    echo '<h3>Posts Relacionados</h3>';
+                                    while ($related_posts_query->have_posts()) {
+                                        $related_posts_query->the_post();
+                                        
+
+                        ?>
+
+                        <article class="card_post_simple">
+                            <a href="<?= get_the_permalink(); ?>">
+                                <?php $post_thumbnail_id = get_post_thumbnail_id(get_the_ID()); ?>
+
+                                <img src="<?= get_the_post_thumbnail_url(null, 'medium') ?>" alt="<?= get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true); ?>" title="<?= get_the_title($post_thumbnail_id); ?>">
+                                
+                            </a>
+
+                            <h3><a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h3>
+
+                            <p><?= get_the_excerpt(); ?></p>
+                        </article>
+
+                        <?php     }
+                                    
+                                }
+
+                                wp_reset_postdata();
+                            } else {
+                                echo 'Este post não tem categorias.';
+                            }
+                        ?>
+
+                        </section>
+
+                        <div class="container more_post">
+                        <?php
+
+                        the_posts_pagination( array(
+                            'mid_size' => 2,
+                            'prev_text' => __( 'Anterior', 'textdomain' ),
+                            'next_text' => __( 'Próximo', 'textdomain' ),
+                        ) );
+
+                        ?>
+                        </div>
+                    </section>
                 </div>
 
-                <div class="f-30 left_sidebar">
+                <div class="f-30 right_sidebar">
+                    <div class="content_right_sidebar">
                     <?php 
                         
                         if(is_active_sidebar('barra-lateral')):
@@ -111,6 +188,8 @@
                         endif;
 
                     ?>
+                    </div>
+                   
                 </div>
                 
             </div>

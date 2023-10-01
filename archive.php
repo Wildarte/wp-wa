@@ -41,15 +41,15 @@
             </section>
 
             <div class="container more_post">
-            <?php
+                <?php
+                    the_posts_pagination( array(
+                        'mid_size' => 2,
+                        'prev_text' => __( '&#8249;', 'textdomain' ),
+                        'next_text' => __( '&#8250;', 'textdomain' ),
+                    ) );
 
-            the_posts_pagination( array(
-                'mid_size' => 2,
-                'prev_text' => __( 'Anterior', 'textdomain' ),
-                'next_text' => __( 'Próximo', 'textdomain' ),
-            ) );
-
-            ?>
+                    
+                ?>
             </div>
         </section>
     </main>
