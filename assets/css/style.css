@@ -313,6 +313,7 @@ footer.footer{
 }
 .left_content{
     padding: 10px;
+    width: 70%;
 }
 .header_post h2{
     font-size: 3rem;
@@ -328,7 +329,9 @@ footer.footer{
 .info_header_post span, .info_header_post ul{
     margin-right: 20px;
 }
-
+.content_post{
+    width: 100%;
+}
 .content_post p, .content_post ul, .content_post ol{
     font-size: 19px;
     font-family: var(--font-open-sans);
@@ -480,6 +483,7 @@ footer.footer{
 
 .right_sidebar{
     padding: 10px;
+    width: 30%;
 }
 .content_right_sidebar{
     position: sticky;
@@ -766,7 +770,7 @@ footer.footer{
     .list_post_simple{
         padding: 20px 10px 10px;
     }
-    .f-70, .f-30{
+    .f-70, .f-30, .right_sidebar, .left_content{
         flex-basis: 100%;
     }
     .col_footer{

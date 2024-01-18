@@ -10,7 +10,7 @@
                 </div>
             </section>
             <div class="content_post">
-                <h4 class="p-10">Não econtramos conteúdo nessa página, mas o encontramos o seguinte conteúdo para você!</h4>
+                <h4 class="p-10">Não econtramos conteúdo nessa página, mas encontramos o seguinte conteúdo para você!</h4>
             </div>
             <section class="container list_post_simple d-flex">
 

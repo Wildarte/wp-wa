@@ -11,7 +11,7 @@
         <section class="body_page_post">
             <div class="container d-flex header_post">
 
-                <div class="f-70 left_content d-flex">
+                <div class="left_content d-flex">
                     <div class="header_post">
                         <h2><?= get_the_title() ?></h2>
 
@@ -179,7 +179,7 @@
                     </section>
                 </div>
 
-                <div class="f-30 right_sidebar">
+                <div class="right_sidebar">
                     <div class="content_right_sidebar">
                     <?php 
                         
